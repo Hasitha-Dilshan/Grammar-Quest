@@ -163,7 +163,7 @@ function render(){const y=scrollY,D=document.documentElement;
   const cj=it.k=='l'?it.j:Q.slice(0,i).filter(x=>x.k=='l').pop().j;
   h=`<div class="tp"><button class="btn o sm" data-a="home">←</button><div class="tpt"><b>${E(tl(t))}</b><div class="bar"><i style="width:${Math.round((i+1)/Q.length*100)}%"></i></div></div><span class="sc">${tSc(t)}/${tMax(t)}</span></div>`;
   h+=`<div class="chips">${st.map((q,j)=>{const qi=Q.findIndex(x=>x.k=='l'&&x.j==j);return qi>S.mx[t.id]?`<button class="chip lk" data-a="lock" data-m="Finish the steps in order to unlock this 🔒">🔒 ${E(q.t)}</button>`:`<button class="chip ${j==cj?'on':''}${qi<S.mx[t.id]||qi<i?' dn':''}" data-a="ls" data-v="${qi}">${E(q.t)}</button>`}).join('')}</div>`;
-  if(it.k=='l')h+=`<div class="hint">💡 Tap any example sentence to hear it · 🔊 on top reads the whole lesson · swipe for next step · hold 🔊 to change voice</div><div class="card g lesson">${vk(st[it.j].h)}</div>`;
+  if(it.k=='l')h+=`<div class="card g lesson">${vk(st[it.j].h)}</div>`;
   else{let s0=i;while(Q[s0-1]&&Q[s0-1].k=='a')s0--;let e0=i;while(Q[e0+1]&&Q[e0+1].k=='a')e0++;
    h+=`<div class="sub">🎯 Practice time · ${E(it.a.sub)} · ${i-s0+1}/${e0-s0+1}</div>`+act(it.a)}}
  $('m').innerHTML=h;nav();$('tts').style.display=(S.v=='topic'&&S.tt=='learn'&&'speechSynthesis' in window)?'':'none';scrollTo(0,y);const c=document.querySelector('.chip.on');if(c)c.parentNode.scrollLeft=c.offsetLeft-60}
@@ -244,7 +244,7 @@ function studyRender(){const y=scrollY,D=document.documentElement,nb=$('bn');
  else{const t=W.find(x=>x.id==S.stid),st=steps(t.id),g=S.stab!='a',n=g?st.length:t.acts.length,i=Math.min(S.sg[t.id]||0,st.length-1),k=Math.min(S.sa[t.id]||0,t.acts.length-1);
   h=`<div class="tp"><button class="btn o sm" data-a="shome">←</button><div class="tpt"><b>${E(tl(t))}</b><div class="bar"><i style="width:${Math.round(((g?i:k)+1)/n*100)}%"></i></div></div><span class="sc">${tSc(t)}/${tMax(t)}</span></div>`;
   h+=`<div class="seg"><button class="${g?'on':''}" data-a="stab" data-v="g">📖 Grammar (${st.length})</button><button class="${g?'':'on'}" data-a="stab" data-v="a">🎯 Activities (${t.acts.length})</button></div>`;
-  if(g){tts=true;h+=`<div class="chips">${st.map((q,j)=>`<button class="chip ${j==i?'on':''}" data-a="sg" data-v="${j}">${E(q.t)}</button>`).join('')}</div><div class="hint">💡 Tap any example to hear it · 🔊 on top reads the step · hold 🔊 to change voice</div><div class="card g lesson">${vk(st[i].h)}</div>`}
+  if(g){tts=true;h+=`<div class="chips">${st.map((q,j)=>`<button class="chip ${j==i?'on':''}" data-a="sg" data-v="${j}">${E(q.t)}</button>`).join('')}</div><div class="card g lesson">${vk(st[i].h)}</div>`}
   else{let last='';const opts=t.acts.map((a,j)=>{let o='';if(a.sub!==last){o+=(last?'</optgroup>':'')+`<optgroup label="${E(a.sub)}">`;last=a.sub}return o+`<option value="${j}"${j==k?' selected':''}>${E(a.id+' · '+a.title)}</option>`}).join('')+'</optgroup>';
    h+=`<select class="jump" data-sa="1">${opts}</select><div class="sub">🎯 ${E(t.acts[k].sub)} · ${k+1}/${t.acts.length}</div>`+act(t.acts[k])}
   const pv=g?(i?'← Back':'← Topics'):(k?'← Back':'← Grammar'),nx=g?(i<st.length-1?'Next →':'Activities 🎯'):(k<t.acts.length-1?'Next →':(W.find(x=>x.id==t.id+1)?'Next topic →':'Finish 🏁'));
